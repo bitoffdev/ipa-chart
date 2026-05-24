@@ -1,0 +1,306 @@
+/* Pulmonic consonants */
+.pulmonic-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 -0.25rem;
+  border-radius: 8px;
+}
+
+.pulmonic-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.8rem;
+  min-width: max(100%, 720px);
+}
+
+.pulmonic-table th,
+.pulmonic-table td {
+  border: 1px solid var(--color-border);
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.pulmonic-corner {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  background: var(--color-surface);
+  min-width: 5.5rem;
+}
+
+.pulmonic-place {
+  background: var(--color-bg);
+  font-weight: 600;
+  font-size: 0.7rem;
+  padding: 0.35rem 0.25rem;
+  top: 0;
+  z-index: 2;
+}
+
+.pulmonic-manner {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: var(--color-surface);
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-align: right;
+  padding: 0.25rem 0.5rem;
+  min-width: 5.5rem;
+  white-space: nowrap;
+}
+
+.pulmonic-cell {
+  min-width: 2.75rem;
+  height: 2.75rem;
+}
+
+.pulmonic-cell .sym-btn {
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  font-size: 1.2rem;
+  border: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+}
+
+.pulmonic-impossible {
+  background: var(--color-impossible);
+}
+
+.pulmonic-hidden {
+  display: none;
+}
+
+.pulmonic-empty {
+  background: var(--color-bg);
+}
+
+/* Vowels */
+.vowel-chart-wrap {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem;
+  overflow-x: auto;
+}
+
+.vowel-axis {
+  display: flex;
+  font-size: 0.7rem;
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.vowel-axis-y {
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 0;
+  min-height: 280px;
+}
+
+.vowel-axis-x {
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.5rem 0.25rem;
+  grid-column: 1 / -1;
+}
+
+.vowel-main {
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.vowel-regions {
+  display: grid;
+  grid-template-columns: repeat(36, 1fr);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-accent-dark);
+  text-align: center;
+  margin-bottom: 0.25rem;
+  min-width: 480px;
+}
+
+.vowel-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--vowel-cols), minmax(0, 1fr));
+  grid-template-rows: repeat(var(--vowel-rows), minmax(2.75rem, auto));
+  gap: 2px;
+  min-width: 480px;
+  position: relative;
+}
+
+.vowel-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vowel-cell .sym-btn {
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  font-size: 1.15rem;
+}
+
+/* Non-pulmonic */
+.non-pulmonic-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.non-pulmonic-header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--color-accent-dark);
+}
+
+.non-pulmonic-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.non-pulmonic-cell {
+  display: flex;
+  justify-content: center;
+}
+
+.cell-with-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.cell-label {
+  font-size: 0.65rem;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+/* Other / suprasegmentals paired layout */
+.paired-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.paired-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.paired-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg);
+}
+
+.paired-desc {
+  margin: 0;
+  flex: 1;
+  min-width: 6rem;
+  font-size: 0.85rem;
+  align-self: center;
+}
+
+/* Diacritics */
+.diacritics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.5rem;
+}
+
+.diacritic-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg);
+}
+
+.diacritic-name {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  line-height: 1.2;
+}
+
+/* Tones */
+.tones-subhead {
+  margin: 0.75rem 0 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-accent-dark);
+}
+
+.tones-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tones-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tone-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.35rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  min-width: 5rem;
+}
+
+.tone-label {
+  font-size: 0.7rem;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+/* Simple grid fallback */
+.simple-grid-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.simple-grid-cell {
+  flex: 0 0 auto;
+}
+
+@media (min-width: 768px) {
+  .site-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .chart-section {
+    margin: 0 1rem 1rem;
+  }
+
+  .pulmonic-cell .sym-btn,
+  .vowel-cell .sym-btn {
+    font-size: 1.35rem;
+  }
+}

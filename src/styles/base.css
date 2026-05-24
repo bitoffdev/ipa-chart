@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Charis+SIL:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap');
+
+:root {
+  --color-accent: #c14f1e;
+  --color-accent-dark: #8a3a16;
+  --color-border: #c14f1e;
+  --color-bg: #faf8f6;
+  --color-surface: #ffffff;
+  --color-text: #1a1a1a;
+  --color-muted: #5c5c5c;
+  --color-impossible: #e8e4e0;
+  --color-shadow: rgba(30, 30, 30, 0.12);
+  --font-ui: 'Source Sans 3', system-ui, sans-serif;
+  --font-ipa: 'Charis SIL', 'DejaVu Sans', serif;
+  --tap-min: 44px;
+  --header-h: 3.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #121212;
+    --color-surface: #1e1e1e;
+    --color-text: #f0f0f0;
+    --color-muted: #a8a8a8;
+    --color-impossible: #2a2826;
+    --color-shadow: rgba(0, 0, 0, 0.4);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.ipa-text {
+  font-family: var(--font-ipa);
+}
+
+#app {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-surface);
+  border-bottom: 2px solid var(--color-border);
+  padding: 0.75rem 1rem 0.5rem;
+  box-shadow: 0 2px 8px var(--color-shadow);
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-accent-dark);
+}
+
+.site-subtitle {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+.section-nav {
+  display: flex;
+  gap: 0.35rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.25rem;
+  scrollbar-width: thin;
+}
+
+.section-nav a {
+  flex-shrink: 0;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--color-accent-dark);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.section-nav a:hover,
+.section-nav a:focus-visible {
+  background: var(--color-accent);
+  color: #fff;
+  outline: none;
+}
+
+.chart-sections {
+  flex: 1;
+  padding: 0.5rem 0 2rem;
+}
+
+.chart-section {
+  margin: 0 0.5rem 0.75rem;
+}
+
+.chart-section details {
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px var(--color-shadow);
+}
+
+.chart-section summary {
+  cursor: pointer;
+  padding: 0.65rem 1rem;
+  list-style: none;
+  user-select: none;
+}
+
+.chart-section summary::-webkit-details-marker {
+  display: none;
+}
+
+.chart-section summary::before {
+  content: '− ';
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.chart-section details:not([open]) summary::before {
+  content: '+ ';
+}
+
+.chart-section h2 {
+  display: inline;
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.section-body {
+  padding: 0 0.75rem 1rem;
+}
+
+.section-comment,
+.chart-legend {
+  margin: 0.75rem 0 0;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.site-footer {
+  padding: 1.5rem 1rem;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.site-footer p {
+  margin: 0 0 0.75rem;
+  max-width: 65ch;
+}
+
+.site-footer a {
+  color: var(--color-accent-dark);
+}
+
+.sym-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--tap-min);
+  min-height: var(--tap-min);
+  padding: 0.25rem 0.5rem;
+  font-family: var(--font-ipa);
+  font-size: 1.35rem;
+  line-height: 1;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.sym-btn:hover,
+.sym-btn:focus-visible {
+  background: #fff3ee;
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .sym-btn:hover,
+  .sym-btn:focus-visible {
+    background: #2a221e;
+  }
+}
+
+.sym-btn:active {
+  transform: scale(0.96);
+}

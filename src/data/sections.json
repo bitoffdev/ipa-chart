@@ -1,0 +1,51 @@
+[
+  {
+    "id": "pulmonic",
+    "name": "CONSONANTS (PULMONIC)",
+    "cols": 22,
+    "rows": 8,
+    "comment": "Symbols to the right in a cell are voiced, to the left are voiceless. Shaded areas denote articulations judged impossible."
+  },
+  {
+    "id": "non-pulmonic",
+    "name": "CONSONANTS (NON-PULMONIC)",
+    "cols": 3,
+    "rows": 5,
+    "comment": null
+  },
+  {
+    "id": "other",
+    "name": "OTHER SYMBOLS",
+    "cols": 3,
+    "rows": 6,
+    "comment": "Affricates and double articulations can be represented by two symbols joined by a tie bar if necessary."
+  },
+  {
+    "id": "diacritics",
+    "name": "DIACRITICS",
+    "cols": 3,
+    "rows": 12,
+    "comment": "Some diacritics may be placed above a symbol with a descender."
+  },
+  {
+    "id": "vowels",
+    "name": "VOWELS",
+    "cols": 36,
+    "rows": 7,
+    "comment": "Where symbols appear in pairs, the one to the right represents a rounded vowel."
+  },
+  {
+    "id": "suprasegmentals",
+    "name": "SUPRASEGMENTALS",
+    "cols": 1,
+    "rows": 9,
+    "comment": null
+  },
+  {
+    "id": "tones",
+    "name": "TONES AND WORD ACCENTS",
+    "cols": 4,
+    "rows": 7,
+    "comment": null
+  }
+]
