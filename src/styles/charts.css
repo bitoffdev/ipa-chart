@@ -133,16 +133,54 @@
   position: relative;
 }
 
+.vowel-trapezoid {
+  position: absolute;
+  inset: 0;
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.vowel-trapezoid polygon,
+.vowel-trapezoid line {
+  fill: none;
+  stroke: var(--color-border);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.55;
+}
+
+.vowel-cell,
+.vowel-pair {
+  position: relative;
+  z-index: 1;
+}
+
 .vowel-cell {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.vowel-cell .sym-btn {
+.vowel-pair {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.vowel-cell .sym-btn,
+.vowel-pair .sym-btn {
   min-width: 2.5rem;
   min-height: 2.5rem;
   font-size: 1.15rem;
+}
+
+.vowel-pair .sym-btn + .sym-btn {
+  margin-left: -1px;
 }
 
 /* Non-pulmonic */
@@ -300,7 +338,8 @@
   }
 
   .pulmonic-cell .sym-btn,
-  .vowel-cell .sym-btn {
+  .vowel-cell .sym-btn,
+  .vowel-pair .sym-btn {
     font-size: 1.35rem;
   }
 }
