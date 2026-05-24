@@ -1,8 +1,10 @@
 import './styles/base.css';
 import './styles/charts.css';
+import './styles/modal.css';
 import './styles/quiz.css';
 
 import { loadPlayableVowels } from './quiz/playableVowels';
+import { initStatsModal, mountQuizStats } from './quiz/quizStats';
 import { createVowelQuiz } from './quiz/vowelQuiz';
 
 function pageUrl(path: string): string {
@@ -30,6 +32,10 @@ function buildShell(): void {
   if (!app) return;
 
   app.innerHTML = `
+    <aside id="quiz-stats" class="quiz-stats" aria-label="Quiz accuracy">
+      <button type="button" class="quiz-stats-summary" aria-label="View accuracy breakdown">—% · 0 answered</button>
+      <button type="button" class="quiz-stats-reset">Reset</button>
+    </aside>
     <header class="site-header">
       <h1>Vowel Quiz</h1>
       <p class="site-subtitle">Listen, then tap the vowel you heard.</p>
@@ -43,11 +49,17 @@ function buildShell(): void {
       </div>
     </main>
     ${FOOTER_HTML}
+    <div id="stats-modal-overlay" class="modal-overlay" aria-hidden="true"></div>
   `;
 }
 
 async function initQuiz(): Promise<void> {
   buildShell();
+
+  const statsEl = document.getElementById('quiz-stats');
+  if (statsEl) mountQuizStats(statsEl);
+  initStatsModal();
+
   const root = document.getElementById('quiz-root');
   if (!root) return;
 

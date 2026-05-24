@@ -38,8 +38,33 @@ const CHART_VOWEL_PAIRS: [string, string][] = [
   ['ɑ', 'ɒ'],
 ];
 
-const OPENNESS_LABELS = ['close', 'near-close', 'close-mid', 'mid', 'open-mid', 'near-open', 'open'] as const;
-const FRONTNESS_LABELS = ['front', 'near-front', 'central', 'near-back', 'back'] as const;
+export const OPENNESS_LABELS = ['close', 'near-close', 'close-mid', 'mid', 'open-mid', 'near-open', 'open'] as const;
+export const FRONTNESS_LABELS = ['front', 'near-front', 'central', 'near-back', 'back'] as const;
+export const ROUNDING_BUCKETS = ['unrounded', 'rounded', 'not distinguished'] as const;
+
+export type OpennessLabel = (typeof OPENNESS_LABELS)[number];
+export type FrontnessLabel = (typeof FRONTNESS_LABELS)[number];
+export type RoundingBucket = (typeof ROUNDING_BUCKETS)[number];
+
+export interface VowelAxisBuckets {
+  openness: OpennessLabel;
+  frontness: FrontnessLabel;
+  rounding: RoundingBucket;
+}
+
+export function vowelAxisBuckets(sym: IpaSymbol): VowelAxisBuckets {
+  const axes = vowelAxes(sym);
+  return {
+    openness: OPENNESS_LABELS[axes.openness],
+    frontness: FRONTNESS_LABELS[axes.frontness],
+    rounding:
+      axes.rounding === 0
+        ? 'unrounded'
+        : axes.rounding === 1
+          ? 'rounded'
+          : 'not distinguished',
+  };
+}
 
 type VowelPosition = Pick<VowelAxes, 'openness' | 'frontness'>;
 

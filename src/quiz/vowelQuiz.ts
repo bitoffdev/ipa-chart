@@ -3,6 +3,7 @@ import type { IpaSymbol } from '../types';
 import { renderQuizVowelChart } from '../render/quizVowelChart';
 import { playAudioUrl } from '../ui/audioPlayer';
 import { formatWrongGuessFeedback } from './vowelAxes';
+import { recordQuizAnswer } from './quizStats';
 import type { PlayableClip, PlayableVowel } from './playableVowels';
 
 interface Round {
@@ -131,6 +132,7 @@ export function createVowelQuiz(root: HTMLElement, playable: PlayableVowel[]): v
       const guessSym = symbolById.get(selectedId);
       if (!guessSym) return;
 
+      recordQuizAnswer(correct, correctSym);
       showFeedback(correct, guessSym, correctSym);
     });
   }
