@@ -4,6 +4,7 @@ import { renderQuizVowelChart } from '../render/quizVowelChart';
 import { playAudioUrl } from '../ui/audioPlayer';
 import { formatWrongGuessFeedback } from './vowelAxes';
 import { recordQuizAnswer } from './quizStats';
+import { pickSpacedVowel } from './spacedRepetition';
 import type { PlayableClip, PlayableVowel } from './playableVowels';
 
 interface Round {
@@ -22,11 +23,7 @@ function pickRandom<T>(items: T[]): T {
 }
 
 function pickRound(playable: PlayableVowel[], lastVowelId: number | null): Round {
-  let pool = playable;
-  if (playable.length > 1 && lastVowelId !== null) {
-    pool = playable.filter((v) => v.symbol.id !== lastVowelId);
-  }
-  const vowel = pickRandom(pool);
+  const vowel = pickSpacedVowel(playable, lastVowelId);
   const clip = pickRandom(vowel.clips);
   return { vowel, clip };
 }

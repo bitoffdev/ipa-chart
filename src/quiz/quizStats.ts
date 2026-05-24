@@ -6,6 +6,7 @@ import {
   ROUNDING_BUCKETS,
   vowelAxisBuckets,
 } from './vowelAxes';
+import { resetSrsStore, recordSrsReview } from './spacedRepetition';
 
 const STORAGE_KEY = 'ipa-chart-vowel-quiz-stats';
 
@@ -180,6 +181,7 @@ export function mountQuizStats(container: HTMLElement): void {
   container.querySelector<HTMLButtonElement>('.quiz-stats-reset')?.addEventListener('click', (e) => {
     e.stopPropagation();
     saveQuizStats(emptyStats());
+    resetSrsStore();
     renderStatsPanel(container, loadQuizStats());
   });
 }
@@ -196,5 +198,6 @@ export function recordQuizAnswer(correct: boolean, correctSym: IpaSymbol): void 
   incrementBucket(stats.byRounding, buckets.rounding, correct);
 
   saveQuizStats(stats);
+  recordSrsReview(correctSym.id, correct);
   if (statsContainer) renderStatsPanel(statsContainer, stats);
 }
