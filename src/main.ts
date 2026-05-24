@@ -9,6 +9,11 @@ import { renderPulmonicChart } from './render/pulmonicChart';
 import { renderVowelChart } from './render/vowelChart';
 import { initModal, openSymbolModal } from './ui/modal';
 
+function pageUrl(path: string): string {
+  const base = import.meta.env.BASE_URL;
+  return `${base}${path}`.replace(/\/{2,}/g, '/');
+}
+
 function renderSection(section: (typeof sections)[0]): string {
   let content = '';
   if (section.id === 'pulmonic') {
@@ -41,9 +46,10 @@ function buildApp(): void {
   const app = document.getElementById('app');
   if (!app) return;
 
-  const navLinks = sections
-    .map((s) => `<a href="#section-${s.id}">${s.name.replace(' (PULMONIC)', '').replace(' (NON-PULMONIC)', '')}</a>`)
-    .join('');
+  const navLinks =
+    sections
+      .map((s) => `<a href="#section-${s.id}">${s.name.replace(' (PULMONIC)', '').replace(' (NON-PULMONIC)', '')}</a>`)
+      .join('') + `<a href="${pageUrl('quiz.html')}">Vowel Quiz</a>`;
 
   app.innerHTML = `
     <header class="site-header">
