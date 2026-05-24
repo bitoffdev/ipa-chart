@@ -50,7 +50,13 @@ Use the URL shown by the preview server (assets load under `/ipa-chart/`).
 
 ## Audio
 
-See [AUDIO.md](AUDIO.md) for how to add pronunciation MP3 files under `public/audio/`.
+Download pronunciation clips from the official chart (see licensing notes in [AUDIO.md](AUDIO.md)):
+
+```bash
+npm run download-audio
+```
+
+Or add MP3 files manually under `public/audio/` as described in [AUDIO.md](AUDIO.md).
 
 ## Deploy to GitHub Pages
 
