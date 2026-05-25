@@ -121,7 +121,7 @@
   color: var(--color-accent-dark);
   text-align: center;
   margin-bottom: 0.25rem;
-  min-width: 420px;
+  min-width: 390px;
 }
 
 .vowel-grid {
@@ -129,7 +129,7 @@
   grid-template-columns: repeat(var(--vowel-cols), minmax(0, 1fr));
   grid-template-rows: repeat(var(--vowel-rows), minmax(2.75rem, auto));
   gap: 2px;
-  min-width: 420px;
+  min-width: 390px;
   position: relative;
 }
 

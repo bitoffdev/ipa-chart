@@ -1,6 +1,8 @@
-/** Official vowel data uses cols 6–36; display grid drops the empty leading cols. */
-export const VOWEL_COL_OFFSET = 5;
-export const VOWEL_DISPLAY_COLS = 36 - VOWEL_COL_OFFSET;
+/** Official vowel data uses cols 6–34; display grid trims empty margin cols. */
+export const VOWEL_DATA_MIN_COL = 6;
+export const VOWEL_DATA_MAX_COL = 34;
+export const VOWEL_COL_OFFSET = VOWEL_DATA_MIN_COL - 1;
+export const VOWEL_DISPLAY_COLS = VOWEL_DATA_MAX_COL - VOWEL_COL_OFFSET;
 export const VOWEL_GRID_ROWS = 7;
 
 export function vowelDisplayCol(dataCol: number): number {
@@ -10,7 +12,7 @@ export function vowelDisplayCol(dataCol: number): number {
 export const VOWEL_REGION_COLS = {
   front: '1 / 6',
   central: '13 / 20',
-  back: '25 / 31',
+  back: '25 / 30',
 } as const;
 
 /** Trapezoid corners in display grid coordinates (matches official proportions, shifted left). */
