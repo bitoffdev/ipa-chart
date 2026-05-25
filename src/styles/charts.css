@@ -115,13 +115,13 @@
 
 .vowel-regions {
   display: grid;
-  grid-template-columns: repeat(36, 1fr);
+  grid-template-columns: repeat(var(--vowel-cols), minmax(0, 1fr));
   font-size: 0.7rem;
   font-weight: 700;
   color: var(--color-accent-dark);
   text-align: center;
   margin-bottom: 0.25rem;
-  min-width: 480px;
+  min-width: 420px;
 }
 
 .vowel-grid {
@@ -129,7 +129,7 @@
   grid-template-columns: repeat(var(--vowel-cols), minmax(0, 1fr));
   grid-template-rows: repeat(var(--vowel-rows), minmax(2.75rem, auto));
   gap: 2px;
-  min-width: 480px;
+  min-width: 420px;
   position: relative;
 }
 

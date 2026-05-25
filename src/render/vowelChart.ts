@@ -1,38 +1,13 @@
 import { symbolsBySection } from '../data';
 import type { IpaSymbol } from '../types';
+import {
+  VOWEL_DISPLAY_COLS,
+  VOWEL_GRID_ROWS,
+  VOWEL_REGION_COLS,
+  renderVowelTrapezoid,
+  vowelDisplayCol,
+} from './vowelChartLayout';
 import { renderSymbolButton } from './symbolButton';
-
-const MAX_COL = 36;
-const MAX_ROW = 7;
-
-/** Trapezoid corners in grid coordinates (matches official vowel chart proportions). */
-const TRAPEZOID = {
-  topLeft: { x: 6, y: 0 },
-  topRight: { x: 34, y: 0 },
-  bottomRight: { x: 34, y: 7 },
-  bottomLeft: { x: 18, y: 7 },
-} as const;
-
-function trapezoidLeftEdge(y: number): number {
-  const { topLeft, bottomLeft } = TRAPEZOID;
-  return topLeft.x + ((bottomLeft.x - topLeft.x) * y) / MAX_ROW;
-}
-
-function renderVowelTrapezoid(): string {
-  const { topLeft, topRight, bottomRight, bottomLeft } = TRAPEZOID;
-  let horizontals = '';
-  for (let row = 1; row < MAX_ROW; row++) {
-    const x1 = trapezoidLeftEdge(row);
-    horizontals += `<line x1="${x1}" y1="${row}" x2="${topRight.x}" y2="${row}" />`;
-  }
-
-  return `
-    <svg class="vowel-trapezoid" viewBox="0 0 ${MAX_COL} ${MAX_ROW}" preserveAspectRatio="none" aria-hidden="true">
-      <polygon points="${topLeft.x},${topLeft.y} ${topRight.x},${topRight.y} ${bottomRight.x},${bottomRight.y} ${bottomLeft.x},${bottomLeft.y}" />
-      ${horizontals}
-    </svg>
-  `;
-}
 
 function isVowelPair(unrounded: IpaSymbol, rounded: IpaSymbol): boolean {
   return (
@@ -51,17 +26,17 @@ export function renderVowelChart(): string {
   for (let i = 0; i < sorted.length; i++) {
     const sym = sorted[i];
     const next = sorted[i + 1];
+    const col = vowelDisplayCol(sym.col);
+    const row = sym.row;
     if (next && isVowelPair(sym, next)) {
-      cells += `<div class="vowel-pair" style="grid-column:${sym.col};grid-row:${sym.row}">${renderSymbolButton(sym)}${renderSymbolButton(next)}</div>`;
+      cells += `<div class="vowel-pair" style="grid-column:${col};grid-row:${row}">${renderSymbolButton(sym)}${renderSymbolButton(next)}</div>`;
       i++;
     } else {
-      cells += `<div class="vowel-cell" style="grid-column:${sym.col};grid-row:${sym.row}">${renderSymbolButton(sym)}</div>`;
+      cells += `<div class="vowel-cell" style="grid-column:${col};grid-row:${row}">${renderSymbolButton(sym)}</div>`;
     }
   }
 
-  const frontCols = '6 / 11';
-  const centralCols = '18 / 25';
-  const backCols = '30 / 36';
+  const { front, central, back } = VOWEL_REGION_COLS;
 
   return `
     <div class="vowel-chart-wrap">
@@ -81,11 +56,11 @@ export function renderVowelChart(): string {
           <span>back</span>
         </div>
         <div class="vowel-regions" aria-hidden="true">
-          <span style="grid-column:${frontCols}">Front</span>
-          <span style="grid-column:${centralCols}">Central</span>
-          <span style="grid-column:${backCols}">Back</span>
+          <span style="grid-column:${front}">Front</span>
+          <span style="grid-column:${central}">Central</span>
+          <span style="grid-column:${back}">Back</span>
         </div>
-        <div class="vowel-grid" style="--vowel-cols:${MAX_COL};--vowel-rows:${MAX_ROW}">
+        <div class="vowel-grid" style="--vowel-cols:${VOWEL_DISPLAY_COLS};--vowel-rows:${VOWEL_GRID_ROWS}">
           ${renderVowelTrapezoid()}
           ${cells}
         </div>
